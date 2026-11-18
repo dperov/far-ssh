@@ -1,0 +1,23 @@
+[package]
+name = "far-ssh"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+license = "MIT"
+description = "Far Manager panel plugin for OpenSSH SFTP aliases"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+futures-util = "0.3"
+glob = "0.3"
+openssh-sftp-client = "=0.15.12"
+tempfile = "=3.19.1"
+tokio = { version = "1", features = ["rt", "process", "fs", "io-util", "time"] }
+uuid = { version = "=1.16.0", features = ["v4"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "abort"
